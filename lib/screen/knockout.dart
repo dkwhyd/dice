@@ -37,8 +37,8 @@ class _KnockOutScreenState extends State<KnockOutScreen> {
         actions: [
           IconButton(
               onPressed: () {
-                Navigator.push(
-                    context, MaterialPageRoute(builder: (context) => const Single()));
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => const Single()));
               },
               icon: const Icon(Icons.repeat_one))
         ],
@@ -150,7 +150,8 @@ class _KnockOutScreenState extends State<KnockOutScreen> {
     SnackBar snackBar = SnackBar(
       content: Text(message),
     );
-    // _scaffoldKey.currentState.;
+
+    ScaffoldMessenger.of(context).showSnackBar(snackBar);
   }
 
   Future play(BuildContext context) async {
