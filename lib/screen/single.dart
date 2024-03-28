@@ -1,4 +1,5 @@
 import 'package:dice/dice.dart';
+import 'package:dice/screen/knockout.dart';
 import 'package:flare_flutter/flare_actor.dart';
 import 'package:flutter/material.dart';
 
@@ -24,7 +25,15 @@ class _SingleState extends State<Single> {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text('Single Dice'),
+        title: const Text('Single Dice'),
+        actions: [
+          IconButton(
+              onPressed: () {
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => const KnockOutScreen()));
+              },
+              icon: const Icon(Icons.fitness_center))
+        ],
       ),
       backgroundColor: Colors.blue,
       body: Center(
@@ -37,7 +46,6 @@ class _SingleState extends State<Single> {
                 'assets/dice.flr',
                 fit: BoxFit.contain,
                 animation: currentAnimation,
-                
               ),
             ),
             SizedBox(
@@ -52,7 +60,7 @@ class _SingleState extends State<Single> {
                       callResult();
                     });
                   },
-                  child: Text('Play')),
+                  child: const Text('Play')),
             )
           ],
         ),
