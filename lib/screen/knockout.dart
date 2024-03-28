@@ -15,7 +15,6 @@ class _KnockOutScreenState extends State<KnockOutScreen> {
   int? _aiScore = 0;
   String? _animation1;
   String? _animation2;
-  String? _message;
 
   final _scaffoldKey = GlobalKey<ScaffoldState>();
 
@@ -107,6 +106,7 @@ class _KnockOutScreenState extends State<KnockOutScreen> {
                 padding: EdgeInsets.all(height / 12),
               ),
               Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
                   SizedBox(
                     width: width / 3,
@@ -164,7 +164,7 @@ class _KnockOutScreenState extends State<KnockOutScreen> {
       Dice.wait3seconds().then((_) {
         Map animation1 = Dice.getRandomAnimation();
         Map animation2 = Dice.getRandomAnimation();
-        int result = animation1.keys.first + 1 + animation2.keys.first + 1;
+        int result = Dice.getRandomNumber() + Dice.getRandomNumber();
         int aiResult = Dice.getRandomNumber() + Dice.getRandomNumber();
 
         if (result == 7) {
@@ -176,18 +176,20 @@ class _KnockOutScreenState extends State<KnockOutScreen> {
         }
 
         setState(() {
-          _message = message;
           _playerScore = _playerScore! + result;
           _aiScore = _aiScore! + aiResult;
           _animation1 = animation1.values.first;
           _animation2 = animation2.values.first;
         });
 
+     
         if (_playerScore! >= 50 || _aiScore! >= 50) {
           if (_playerScore! > _aiScore!) {
             message = 'You Win';
+            showMessage(message);
           } else if (_playerScore! == _aiScore!) {
             message = 'Draw';
+            showMessage(message);
           } else {
             message = 'You Lose';
             showMessage(message);
