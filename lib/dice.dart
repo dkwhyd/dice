@@ -9,10 +9,12 @@ class Dice {
     return num;
   }
 
-  static Map getRandomAnimation() {
+  static Map<int, String> getRandomAnimation() {
     var random = Random();
-    int num = random.nextInt(5);
-    Map result = {num: animations[num]};
+    int num = random.nextInt(animations.length);
+    int animationKey = num + 1;
+    String animationValue = animations[num];
+    Map<int, String> result = {animationKey: animationValue};
     return result;
   }
 
