@@ -28,11 +28,15 @@ class _SingleState extends State<Single> {
         title: const Text('Single Dice'),
         actions: [
           IconButton(
-              onPressed: () {
-                Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => const KnockOutScreen()));
-              },
-              icon: const Icon(Icons.fitness_center))
+            onPressed: () {
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => const KnockOutScreen()));
+            },
+            icon: const Icon(Icons.smart_toy),
+            tooltip: 'Duel',
+          ),
         ],
       ),
       backgroundColor: Colors.blue,
