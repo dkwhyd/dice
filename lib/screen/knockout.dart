@@ -79,11 +79,10 @@ class _KnockOutScreenState extends State<KnockOutScreen> {
                     color: Colors.deepOrange,
                     isBordered: false,
                   ),
-                  GameText(
-                    text: _playerScore.toString(),
-                    color: Colors.white,
-                    isBordered: true,
-                  ),
+                  Text(
+                    _playerScore.toString(),
+                    style: const TextStyle(fontSize: 24),
+                  )
                 ],
               ),
               Padding(padding: EdgeInsets.all(height / 24)),
@@ -95,10 +94,9 @@ class _KnockOutScreenState extends State<KnockOutScreen> {
                     color: Colors.lightBlue,
                     isBordered: false,
                   ),
-                  GameText(
-                    text: _aiScore.toString(),
-                    color: Colors.white,
-                    isBordered: true,
+                  Text(
+                    _aiScore.toString(),
+                    style: const TextStyle(fontSize: 24),
                   ),
                 ],
               ),
@@ -140,7 +138,7 @@ class _KnockOutScreenState extends State<KnockOutScreen> {
   void reset(BuildContext context) {
     setState(() {
       _animation1 = 'Start';
-      _animation2 = "start";
+      _animation2 = 'Start';
       _aiScore = 0;
       _playerScore = 0;
     });
@@ -164,8 +162,11 @@ class _KnockOutScreenState extends State<KnockOutScreen> {
       Dice.wait3seconds().then((_) {
         Map animation1 = Dice.getRandomAnimation();
         Map animation2 = Dice.getRandomAnimation();
-        int result = Dice.getRandomNumber() + Dice.getRandomNumber();
-        int aiResult = Dice.getRandomNumber() + Dice.getRandomNumber();
+        print(animation1.keys.first);
+        print(animation2.keys.first);
+
+        int result = animation1.keys.first;
+        int aiResult = animation2.keys.first;
 
         if (result == 7) {
           result = 0;
@@ -176,13 +177,12 @@ class _KnockOutScreenState extends State<KnockOutScreen> {
         }
 
         setState(() {
-          _playerScore = _playerScore! + result;
-          _aiScore = _aiScore! + aiResult;
           _animation1 = animation1.values.first;
           _animation2 = animation2.values.first;
+          _playerScore = _playerScore! + result;
+          _aiScore = _aiScore! + aiResult;
         });
 
-     
         if (_playerScore! >= 50 || _aiScore! >= 50) {
           if (_playerScore! > _aiScore!) {
             message = 'You Win';
