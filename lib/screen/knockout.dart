@@ -1,5 +1,4 @@
 import 'package:dice/dice.dart';
-import 'package:dice/screen/single.dart';
 import 'package:flare_flutter/flare_actor.dart';
 import 'package:flutter/material.dart';
 
@@ -33,14 +32,7 @@ class _KnockOutScreenState extends State<KnockOutScreen> {
       key: _scaffoldKey,
       appBar: AppBar(
         title: const Text('Knockout Game'),
-        actions: [
-          IconButton(
-              onPressed: () {
-                Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => const Single()));
-              },
-              icon: const Icon(Icons.repeat_one))
-        ],
+       
       ),
       body: SingleChildScrollView(
         child: Container(
@@ -162,8 +154,6 @@ class _KnockOutScreenState extends State<KnockOutScreen> {
       Dice.wait3seconds().then((_) {
         Map animation1 = Dice.getRandomAnimation();
         Map animation2 = Dice.getRandomAnimation();
-        print(animation1.keys.first);
-        print(animation2.keys.first);
 
         int result = animation1.keys.first;
         int aiResult = animation2.keys.first;
